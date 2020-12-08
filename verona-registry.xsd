@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="Registry">
+	  <xs:complexType>
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+		  <xs:element name="Player" type="PlayerType"/>
+		  <xs:element name="Editor" type="EditorType"/>
+		</xs:choice>
+	  </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="PlayerType">
+    <xs:sequence>
+      <xs:element name="CodeToEnter" type="CodeToEnterRestrictionType" minOccurs="0" />
+      <xs:element name="TimeMax" type="TimeMaxRestrictionType" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TimeMaxRestrictionType">
+    <xs:attribute name="minutes" type="xs:positiveInteger"/>
+  </xs:complexType>
+
+  <xs:complexType name="CodeToEnterRestrictionType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="code" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="FirstRestrictionsType">
+    <xs:all>
+      <xs:element name="TimeMax" type="TimeMaxRestrictionType" minOccurs="0" />
+    </xs:all>
+  </xs:complexType>
+
+  <xs:complexType name="TestletType">
+    <xs:sequence>
+      <xs:element name="Restrictions" type="TestletRestrictionsType" minOccurs="0" />
+      <xs:sequence>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="Unit" type="UnitType" />
+          <xs:element name="Testlet" type="TestletType" />
+        </xs:choice>
+      </xs:sequence>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string" use="required"/>
+    <xs:attribute name="label" type="xs:string" />
+  </xs:complexType>
+
+  <xs:complexType name="PlayerType">
+    <xs:sequence>
+      <xs:element name="Restrictions" type="FirstRestrictionsType" minOccurs="0" />
+      <xs:sequence>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="Unit" type="UnitType" />
+          <xs:element name="Testlet" type="TestletType" />
+        </xs:choice>
+      </xs:sequence>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="UnitType">
+    <xs:attribute name="id" type="xs:ID" use="required"/>
+    <xs:attribute name="label" type="xs:string" use="required"/>
+    <xs:attribute name="labelshort" type="xs:string"/>
+    <xs:attribute name="alias" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="ConfigType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="key" type="xs:ID" use="required" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+</xs:schema>
