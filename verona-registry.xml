@@ -37,8 +37,21 @@
 					* Antwortformat erweitert
 				</ReleaseNotes>
 			</Release>
-		</Releases> 
+		</Releases>
 	</Player>
-
-
+	<Player name="verona-player-simple" repository="https://github.com/iqb-berlin/verona-player-simple">
+		<Description xml:lang="en">
+			This is a simple, dependency-less, vanilla-js-written, but full-featured unit player,
+			mainly as showcase for developers and for software-testing.
+		</Description>
+		<Releases>
+			<Release version="1.0" url="https://raw.githubusercontent.com/iqb-berlin/verona-player-simple/1.0.1/verona-simple-player-1.html">
+				<ResponseType>verona-simple-player@1.0</ResponseType>
+				<UnitDefinitionType>verona-simple-player@1.0</UnitDefinitionType>
+				<VeronaSpecification>2.1</VeronaSpecification>
+				<ReleaseNotes>
+				</ReleaseNotes>
+			</Release>
+		</Releases>
+	</Player>
 </Verona-Registry>
